@@ -2,7 +2,7 @@
 # Do not edit!
 
 {
-  version = "2026.6.0";
+  version = "2026.6.1";
   components = {
     "3_day_blinds" =
       ps: with ps; [
@@ -103,7 +103,8 @@
       ];
     "aidot" =
       ps: with ps; [
-      ]; # missing inputs: python-aidot
+        python-aidot
+      ];
     "air_quality" =
       ps: with ps; [
       ];
@@ -991,7 +992,8 @@
       ];
     "centriconnect" =
       ps: with ps; [
-      ]; # missing inputs: aiocentriconnect
+        aiocentriconnect
+      ];
     "cert_expiry" =
       ps: with ps; [
       ];
@@ -1009,7 +1011,8 @@
       ];
     "cielo_home" =
       ps: with ps; [
-      ]; # missing inputs: cielo-connect-api
+        cielo-connect-api
+      ];
     "cisco_ios" =
       ps: with ps; [
         pexpect
@@ -1205,7 +1208,8 @@
       ];
     "data_grand_lyon" =
       ps: with ps; [
-      ]; # missing inputs: data-grand-lyon-ha
+        data-grand-lyon-ha
+      ];
     "datadog" =
       ps: with ps; [
         datadog
@@ -1492,7 +1496,8 @@
       ];
     "duco" =
       ps: with ps; [
-      ]; # missing inputs: python-duco-connectivity
+        python-duco-connectivity
+      ];
     "dunehd" =
       ps: with ps; [
         pdunehd
@@ -2461,7 +2466,8 @@
       ];
     "guntamatic" =
       ps: with ps; [
-      ]; # missing inputs: guntamatic
+        guntamatic
+      ];
     "habitica" =
       ps: with ps; [
         habiticalib
@@ -7733,6 +7739,7 @@
     "aftership"
     "agent_dvr"
     "ai_task"
+    "aidot"
     "air_quality"
     "airgradient"
     "airly"
@@ -7846,9 +7853,11 @@
     "casper_glow"
     "cast"
     "ccm15"
+    "centriconnect"
     "cert_expiry"
     "chacon_dio"
     "chess_com"
+    "cielo_home"
     "citybikes"
     "clicksend_tts"
     "climate"
@@ -7876,6 +7885,7 @@
     "crownstone"
     "cync"
     "daikin"
+    "data_grand_lyon"
     "datadog"
     "date"
     "datetime"
@@ -7918,6 +7928,7 @@
     "dsmr"
     "dsmr_reader"
     "duckdns"
+    "duco"
     "dunehd"
     "duotecno"
     "dwd_weather_warnings"
@@ -8074,6 +8085,7 @@
     "group"
     "growatt_server"
     "guardian"
+    "guntamatic"
     "habitica"
     "hanna"
     "hardkernel"

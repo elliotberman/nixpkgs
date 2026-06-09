@@ -695,6 +695,7 @@ in
   grocy = runTest ./grocy.nix;
   grow-partition = runTest ./grow-partition.nix;
   grub = runTest ./grub.nix;
+  gs1200-exporter = runTest ./gs1200-exporter.nix;
   guacamole-server = runTest ./guacamole-server.nix;
   guix = handleTest ./guix { };
   gvisor = runTest ./gvisor.nix;
@@ -942,7 +943,7 @@ in
   lomiri-system-settings = runTest ./lomiri-system-settings.nix;
   lorri = handleTest ./lorri/default.nix { };
   luks = runTest ./luks.nix;
-  lvm2 = handleTest ./lvm2 { };
+  lvm2 = import ./lvm2 { inherit pkgs runTest; };
   lxc = runTestOn [ "x86_64-linux" "aarch64-linux" ] ./lxc;
   lxd-image-server = runTest ./lxd-image-server.nix;
   lxqt = runTest ./lxqt.nix;
@@ -1489,6 +1490,7 @@ in
   sane = runTest ./sane.nix;
   sanoid = runTest ./sanoid.nix;
   saunafs = runTest ./saunafs.nix;
+  scanservjs = runTest ./scanservjs.nix;
   scaphandre = runTest ./scaphandre.nix;
   schleuder = runTest ./schleuder.nix;
   scion-freestanding-deployment = runTest ./scion/freestanding-deployment;
@@ -1670,6 +1672,7 @@ in
   systemd-timesyncd-nscd-dnssec = runTest ./systemd-timesyncd-nscd-dnssec.nix;
   systemd-user-linger = runTest ./systemd-user-linger.nix;
   systemd-user-linger-purge = runTest ./systemd-user-linger-purge.nix;
+  systemd-user-settings = runTest ./systemd-user-settings.nix;
   systemd-user-tmpfiles-rules = runTest ./systemd-user-tmpfiles-rules.nix;
   systemd-userdbd = runTest ./systemd-userdbd.nix;
   systemtap = handleTest ./systemtap.nix { };
@@ -1849,7 +1852,7 @@ in
   zammad = runTest ./zammad.nix;
   zenohd = runTest ./zenohd.nix;
   zeronet-conservancy = runTest ./zeronet-conservancy.nix;
-  zfs = handleTest ./zfs.nix { };
+  zfs = import ./zfs.nix { inherit system pkgs runTest; };
   zigbee2mqtt = runTest ./zigbee2mqtt.nix;
   zipline = runTest ./zipline.nix;
   zoneminder = runTest ./zoneminder.nix;

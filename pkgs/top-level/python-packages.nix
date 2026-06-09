@@ -246,6 +246,8 @@ self: super: with self; {
 
   aiocache = callPackage ../development/python-modules/aiocache { };
 
+  aiocentriconnect = callPackage ../development/python-modules/aiocentriconnect { };
+
   aiocmd = callPackage ../development/python-modules/aiocmd { };
 
   aiocoap = callPackage ../development/python-modules/aiocoap { };
@@ -1083,8 +1085,6 @@ self: super: with self; {
   aspectlib = callPackage ../development/python-modules/aspectlib { };
 
   aspell-python = callPackage ../development/python-modules/aspell-python { };
-
-  aspy-yaml = callPackage ../development/python-modules/aspy-yaml { };
 
   assay = callPackage ../development/python-modules/assay { };
 
@@ -2759,6 +2759,8 @@ self: super: with self; {
 
   ci-py = callPackage ../development/python-modules/ci-py { };
 
+  cielo-connect-api = callPackage ../development/python-modules/cielo-connect-api { };
+
   cinemagoer = callPackage ../development/python-modules/cinemagoer { };
 
   circuit-webhook = callPackage ../development/python-modules/circuit-webhook { };
@@ -3623,6 +3625,8 @@ self: super: with self; {
   dask-mpi = callPackage ../development/python-modules/dask-mpi { };
 
   dask-yarn = callPackage ../development/python-modules/dask-yarn { };
+
+  data-grand-lyon-ha = callPackage ../development/python-modules/data-grand-lyon-ha { };
 
   databackend = callPackage ../development/python-modules/databackend { };
 
@@ -5528,13 +5532,6 @@ self: super: with self; {
 
   fastuuid = callPackage ../development/python-modules/fastuuid { };
 
-  fatrop = toPythonModule (
-    pkgs.fatrop.override {
-      pythonSupport = true;
-      python3Packages = self;
-    }
-  );
-
   faust-cchardet = callPackage ../development/python-modules/faust-cchardet { };
 
   fava = callPackage ../development/python-modules/fava { };
@@ -6926,6 +6923,8 @@ self: super: with self; {
 
   gunicorn = callPackage ../development/python-modules/gunicorn { };
 
+  guntamatic = callPackage ../development/python-modules/guntamatic { };
+
   guppy3 = callPackage ../development/python-modules/guppy3 { };
 
   gurobipy = callPackage ../development/python-modules/gurobipy { };
@@ -7250,6 +7249,8 @@ self: super: with self; {
   hoomd-blue = callPackage ../development/python-modules/hoomd-blue { };
 
   hopcroftkarp = callPackage ../development/python-modules/hopcroftkarp { };
+
+  hoptorch = callPackage ../development/python-modules/hoptorch { };
 
   horimote = callPackage ../development/python-modules/horimote { };
 
@@ -8595,8 +8596,6 @@ self: super: with self; {
 
   langchain-deepseek = callPackage ../development/python-modules/langchain-deepseek { };
 
-  langchain-experimental = callPackage ../development/python-modules/langchain-experimental { };
-
   langchain-fireworks = callPackage ../development/python-modules/langchain-fireworks { };
 
   langchain-google-genai = callPackage ../development/python-modules/langchain-google-genai { };
@@ -8901,6 +8900,8 @@ self: super: with self; {
   liblzfse = callPackage ../development/python-modules/liblzfse { inherit (pkgs) lzfse; };
 
   libmambapy = callPackage ../development/python-modules/libmambapy { };
+
+  libmobility = callPackage ../development/python-modules/libmobility { };
 
   libmodulemd = lib.pipe pkgs.libmodulemd [
     toPythonModule
@@ -15818,6 +15819,8 @@ self: super: with self; {
 
   pythinkingcleaner = callPackage ../development/python-modules/pythinkingcleaner { };
 
+  python-aidot = callPackage ../development/python-modules/python-aidot { };
+
   python-aodhclient = callPackage ../development/python-modules/python-aodhclient { };
 
   python-apt = callPackage ../development/python-modules/python-apt { };
@@ -15919,6 +15922,8 @@ self: super: with self; {
   python-dropbox-api = callPackage ../development/python-modules/python-dropbox-api { };
 
   python-duco-client = callPackage ../development/python-modules/python-duco-client { };
+
+  python-duco-connectivity = callPackage ../development/python-modules/python-duco-connectivity { };
 
   python-ecobee-api = callPackage ../development/python-modules/python-ecobee-api { };
 
@@ -16203,6 +16208,8 @@ self: super: with self; {
   python-redis-lock = callPackage ../development/python-modules/python-redis-lock { };
 
   python-registry = callPackage ../development/python-modules/python-registry { };
+
+  python-resize-image = callPackage ../development/python-modules/python-resize-image { };
 
   python-ripple-api = callPackage ../development/python-modules/python-ripple-api { };
 
@@ -18224,6 +18231,10 @@ self: super: with self; {
 
   smdebug-rulesconfig = callPackage ../development/python-modules/smdebug-rulesconfig { };
 
+  smg-grpc-proto = callPackage ../development/python-modules/smg-grpc-proto { };
+
+  smg-grpc-servicer = callPackage ../development/python-modules/smg-grpc-servicer { };
+
   smhi-pkg = callPackage ../development/python-modules/smhi-pkg { };
 
   smllib = callPackage ../development/python-modules/smllib { };
@@ -20134,6 +20145,8 @@ self: super: with self; {
   troposphere = callPackage ../development/python-modules/troposphere { };
 
   trove-classifiers = callPackage ../development/python-modules/trove-classifiers { };
+
+  trsfile = callPackage ../development/python-modules/trsfile { };
 
   trubar = callPackage ../development/python-modules/trubar { };
 

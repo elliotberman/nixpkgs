@@ -618,8 +618,8 @@ let
         mktplcRef = {
           name = "github-markdown-preview";
           publisher = "bierner";
-          version = "0.3.0";
-          hash = "sha256-7pbl5OgvJ6S0mtZWsEyUzlg+lkUhdq3rkCCpLsvTm4g=";
+          version = "0.4.0";
+          hash = "sha256-bfj0rrZWVtgNfynap9+kdp8jAef0g9pTozEJwmkzhgU=";
         };
         meta = {
           description = "VSCode extension that changes the markdown preview to support GitHub markdown features";
@@ -1215,8 +1215,8 @@ let
         mktplcRef = {
           name = "flutter";
           publisher = "dart-code";
-          version = "3.134.0";
-          hash = "sha256-wWANxBh9Tg3VkfbcrR0NgOIC8cpeZJCNfOevT7E4zKY=";
+          version = "3.136.0";
+          hash = "sha256-RK493qHjEK/k8oy/OIzO3bvNnFo+ZftQhZMIAmBCaJk=";
         };
 
         meta.license = lib.licenses.mit;
@@ -1375,8 +1375,8 @@ let
         mktplcRef = {
           name = "competitive-programming-helper";
           publisher = "DivyanshuAgrawal";
-          version = "2026.5.1779885478";
-          hash = "sha256-8RU6JWHeYOAxof2TXpeXlXSVD9+0e0E46X85A11l4Pk=";
+          version = "2026.6.1780508121";
+          hash = "sha256-4kb7Nk+gctECMQM/cko+q1Bta1EKPXPEqyCQLBMkbEo=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/DivyanshuAgrawal.competitive-programming-helper/changelog";
@@ -2324,8 +2324,8 @@ let
         mktplcRef = {
           name = "vscode-vibrancy-continued";
           publisher = "illixion";
-          version = "1.1.77";
-          hash = "sha256-khxajorzIntF2YwKVd6aZ1+doEr2oN4OliBpc7TTB7o=";
+          version = "1.1.78";
+          hash = "sha256-w0i0Gmqj2atCtEYW+0XvZech37qQaTjkt8MJRdHamxs=";
         };
         meta = {
           downloadPage = "https://marketplace.visualstudio.com/items?itemName=illixion.vscode-vibrancy-continued";
@@ -3491,8 +3491,8 @@ let
         mktplcRef = {
           name = "veriloghdl";
           publisher = "mshr-h";
-          version = "1.23.2";
-          hash = "sha256-btwEFVhvNqCnMCftSt7CS6c4lAf29N3MxBAMriKDyjg=";
+          version = "1.25.0";
+          hash = "sha256-7DN0lYxwLL+Z0mIKApRHGHT7HiJZ0nfDMdojQm7XGAM=";
         };
         meta = {
           changelog = "https://marketplace.visualstudio.com/items/mshr-h.VerilogHDL/changelog";
@@ -3865,8 +3865,8 @@ let
         mktplcRef = {
           name = "ansible";
           publisher = "redhat";
-          version = "26.5.0";
-          hash = "sha256-gKe+LC0OOZi5I1Tei64JtQUR1gpWyTex9MoLGT6jgWU=";
+          version = "26.6.0";
+          hash = "sha256-pCq9niQQIBkiJL6q90W6ecSkGPHttiOAECAyrPgBeqg=";
         };
         meta = {
           description = "Ansible language support";
@@ -3997,8 +3997,8 @@ let
         mktplcRef = {
           name = "wikitext";
           publisher = "RoweWilsonFrederiskHolme";
-          version = "4.0.4";
-          hash = "sha256-IEnWoRQfWx4TbysSQlOxG0c8kiqtR4fOhaV1JxDkRCw=";
+          version = "4.0.5";
+          hash = "sha256-VyrcgS93B5Xd4s101lnTw9o27ffcvmxkShCKJ+6H+2w=";
         };
         meta = {
           description = "Extension that helps users view and write MediaWiki's Wikitext files";

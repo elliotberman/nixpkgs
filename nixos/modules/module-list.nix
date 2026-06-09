@@ -245,6 +245,7 @@
   ./programs/iio-hyprland.nix
   ./programs/immersed.nix
   ./programs/iotop.nix
+  ./programs/jai-jail.nix
   ./programs/java.nix
   ./programs/joycond-cemuhook.nix
   ./programs/k3b.nix
@@ -668,6 +669,7 @@
   ./services/hardware/dell-bios-fan-control.nix
   ./services/hardware/display.nix
   ./services/hardware/fancontrol.nix
+  ./services/hardware/framework-control.nix
   ./services/hardware/freefall.nix
   ./services/hardware/fwupd.nix
   ./services/hardware/g810-led.nix
@@ -1032,6 +1034,7 @@
   ./services/monitoring/grafana-to-ntfy.nix
   ./services/monitoring/grafana.nix
   ./services/monitoring/graphite.nix
+  ./services/monitoring/gs1200-exporter.nix
   ./services/monitoring/hdaps.nix
   ./services/monitoring/heapster.nix
   ./services/monitoring/incron.nix
