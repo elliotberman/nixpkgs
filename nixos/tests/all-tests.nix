@@ -1801,6 +1801,7 @@ in
   typesense = runTest ./typesense.nix;
   tzpfms = runTest ./tzpfms.nix;
   tzupdate = runTest ./tzupdate.nix;
+  uboot-efi = runTest ./uboot-efi.nix;
   ucarp = runTest ./ucarp.nix;
   udisks2 = runTest ./udisks2.nix;
   udp-over-tcp = runTest ./udp-over-tcp.nix;
