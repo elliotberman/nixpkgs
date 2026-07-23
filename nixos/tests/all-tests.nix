@@ -1805,6 +1805,7 @@ in
   ucarp = runTest ./ucarp.nix;
   udisks2 = runTest ./udisks2.nix;
   udp-over-tcp = runTest ./udp-over-tcp.nix;
+  uboot-capsule-update = runTest ./uboot-capsule-update.nix;
   ulogd = runTest ./ulogd/ulogd.nix;
   umami = runTest ./web-apps/umami.nix;
   umurmur = runTest ./umurmur.nix;
