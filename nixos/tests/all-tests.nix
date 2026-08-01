@@ -1729,6 +1729,7 @@ in
   systemd-sysusers-password-option-override-ordering = runTest ./systemd-sysusers-password-option-override-ordering.nix;
   systemd-timesyncd = runTest ./systemd-timesyncd.nix;
   systemd-timesyncd-nscd-dnssec = runTest ./systemd-timesyncd-nscd-dnssec.nix;
+  systemd-uki-fw-capsule = runTest ./systemd-uki-fw-capsule.nix;
   systemd-user-linger = runTest ./systemd-user-linger.nix;
   systemd-user-linger-purge = runTest ./systemd-user-linger-purge.nix;
   systemd-user-settings = runTest ./systemd-user-settings.nix;
