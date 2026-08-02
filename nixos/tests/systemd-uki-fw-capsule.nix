@@ -65,6 +65,16 @@
                 CONFIG_LOCALVERSION="-nixos-updated"
               '';
             });
+
+            badUboot = uboot.out.overrideAttrs (old: {
+              postInstall = (old.postInstall or "") + ''
+                # Wrong GUID
+                ./tools/mkeficapsule \
+                  --index 1 --instance 0 \
+                  --guid 5bb9ce0d-a389-456f-83a8-2bdfb8ad01a0 \
+                  u-boot.bin $out/uki-stuff/uboot/UBOOT.cap
+              '';
+            });
           }
         # TODO: aarch64 support, mostly copy/paste of above but with ubootQemuAarch64, figuring out the HWIDs, running the test
         else
@@ -90,9 +100,18 @@
           owner = "elliotberman";
           repo = "systemd";
           # branch = "efifw-capsules";
-          rev = "61f554852b9e28c80f21993d6324b4da828b3155";
-          hash = "sha256-Z62Uq3LIleAjKEEjeh33GEy0FFsp0gAhn7R+zAp2S+I=";
+          rev = "cb72dd7f17c5823d05e30f7281b80bc010de9e6e";
+          hash = "sha256-hZEl/FJklQbV2QjHuo5drn2JvDKsM+DOIouV6tv7jYM=";
         };
+
+        patches = [
+        ../../pkgs/os-specific/linux/systemd/0001-Don-t-try-to-unmount-nix-or-nix-store.patch
+        ./systemd-patch
+        ../../pkgs/os-specific/linux/systemd/0003-add-rootprefix-to-lookup-dir-paths.patch
+        ../../pkgs/os-specific/linux/systemd/0004-path-util.h-add-placeholder-for-DEFAULT_PATH_NORMAL.patch
+        ../../pkgs/os-specific/linux/systemd/0005-core-don-t-taint-on-unmerged-usr.patch
+        ../../pkgs/os-specific/linux/systemd/0006-timesyncd-disable-NSCD-when-DNSSEC-validation-is-dis.patch
+        ];
       }).override {
         withUkify = true;
       };
@@ -142,7 +161,7 @@
               # aarch64 kernel seems to generally be a little bigger than the
               # x86_64 kernel. To stay on the safe side, leave some more slack
               # for every platform other than x86_64.
-              SizeMinBytes = if config.nixpkgs.hostPlatform.isx86_64 then "64M" else "96M";
+              SizeMinBytes = "128M";
             };
           };
           "swap" = {
@@ -158,6 +177,8 @@
               config.system.build.toplevel
               config.specialisation.updated.configuration.system.build.toplevel
               config.specialisation.updated.configuration.system.build.uki
+              config.specialisation.bad.configuration.system.build.toplevel
+              config.specialisation.bad.configuration.system.build.uki
             ];
             repartConfig = {
               Type = "root";
@@ -170,6 +191,8 @@
       };
 
       ##########################################################################
+      boot.uki.tries = 2;
+      system.image.version = "1";
       boot.uki.settings = {
         UKI = {
           HWIDs = "${uboot.uboot}/uki-stuff";
@@ -178,10 +201,21 @@
       };
 
       specialisation.updated.configuration = {
+        system.image.version = lib.mkForce "2";
         boot.uki.settings = {
           UKI = {
             HWIDS = lib.mkForce "${uboot.updatedUboot}/uki-stuff";
             Firmware = lib.mkForce "${uboot.updatedUboot}/uki-stuff/uboot";
+          };
+        };
+      };
+
+      specialisation.bad.configuration = {
+        system.image.version = lib.mkForce "3";
+        boot.uki.settings = {
+          UKI = {
+            HWIDS = lib.mkForce "${uboot.badUboot}/uki-stuff";
+            Firmware = lib.mkForce "${uboot.badUboot}/uki-stuff/uboot";
           };
         };
       };
@@ -191,6 +225,11 @@
   let
     newCfg = nodes.machine.specialisation.updated.configuration;
     newUki = "${newCfg.system.build.uki}/${newCfg.system.boot.loader.ukiFile}";
+    newUkiFile = newCfg.system.boot.loader.ukiFile;
+    badCfg = nodes.machine.specialisation.bad.configuration;
+    badUki = "${badCfg.system.build.uki}/${badCfg.system.boot.loader.ukiFile}";
+    badUkiFile = badCfg.system.boot.loader.ukiFile;
+    badUkiName = "${badCfg.boot.uki.name}_${badCfg.system.image.version}";
   in
   ''
     import os
@@ -214,15 +253,28 @@
     # Set NIX_DISK_IMAGE so that the qemu script finds the right disk image.
     os.environ['NIX_DISK_IMAGE'] = tmp_disk_image.name
 
-    machine.wait_for_unit("multi-user.target")
-
-    # install the new UKI
-    machine.succeed("cp ${newUki} /boot/EFI/Linux/${nodes.machine.system.boot.loader.ukiFile}")
-    # We can't do `machine.succeed("reboot")` because it the command doesn't exit
-    # from perspective of runner (the VM restarts)
-    machine.shutdown()
     machine.start(allow_reboot=True)
     machine.wait_for_unit("multi-user.target")
-    assert "-nixos-updated" in machine.succeed("cat /sys/devices/virtual/dmi/id/bios_version")
+
+    with subtest("capsule update works"):
+        # install the new UKI (higher version -> preferred by systemd-boot)
+        machine.succeed("cp ${newUki} /boot/EFI/Linux/${newUkiFile}")
+        machine.reboot()
+        machine.wait_for_unit("multi-user.target")
+        assert "-nixos-updated" in machine.succeed("cat /sys/devices/virtual/dmi/id/bios_version")
+
+    with subtest("bad UKI is skipped after exhausting boot counter"):
+        # The bad UKI carries a wrong-GUID capsule; its firmware-update service
+        # fails before boot-complete.target, so it is never blessed. It has the
+        # highest version, so systemd-boot tries it first. After `tries` failed
+        # boots its counter is exhausted (+0-2) and it is skipped, falling back to
+        # the last-known-good (updated) UKI.
+        machine.succeed("cp ${badUki} /boot/EFI/Linux/${badUkiFile}")
+        machine.reboot()
+        machine.wait_for_unit("multi-user.target")
+        # bad capsule never applied -> firmware is still the updated one
+        assert "-nixos-updated" in machine.succeed("cat /sys/devices/virtual/dmi/id/bios_version")
+        # bad UKI's boot counter is exhausted, proving it was skipped
+        machine.succeed("test -e /boot/EFI/Linux/${badUkiName}+0-2.efi")
   '';
 }
