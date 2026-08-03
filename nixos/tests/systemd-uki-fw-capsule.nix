@@ -100,8 +100,8 @@
           owner = "elliotberman";
           repo = "systemd";
           # branch = "efifw-capsules";
-          rev = "cb72dd7f17c5823d05e30f7281b80bc010de9e6e";
-          hash = "sha256-hZEl/FJklQbV2QjHuo5drn2JvDKsM+DOIouV6tv7jYM=";
+          rev = "4b9583d295659ac3c355704559166a7ae1823b3c";
+          hash = "sha256-lsSeAuLfKSnDRqIvcBklyu7BaAQ7iVxy/+w35pqBwEw=";
         };
 
         patches = [
