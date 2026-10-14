@@ -1434,7 +1434,8 @@ class QemuMachine(BaseMachine):
         self.pid = self.process.pid
         self.booted = True
 
-        self.log(f"QEMU running (pid {self.pid})")
+        accel = "kvm" if self.qmp_client.send("query-kvm")["return"]["enabled"] else "tcg"
+        self.log(f"QEMU running (pid {self.pid}, accel {accel})")
 
     def shutdown(self) -> None:
         """
