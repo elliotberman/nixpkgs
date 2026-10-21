@@ -113,15 +113,17 @@ let
       noipv6
     ''}
 
-    ${lib.optionalString (
-      config.networking.enableIPv6 && cfg.IPv6rs == null && staticIPv6Addresses != [ ]
-    ) noIPv6rs}
     ${lib.optionalString (config.networking.enableIPv6 && cfg.IPv6rs == false) ''
       noipv6rs
     ''}
     ${lib.optionalString cfg.setHostname "option host_name"}
 
     ${cfg.extraConfig}
+
+    # Must come last: the `interface` line limits scope for every following line.
+    ${lib.optionalString (
+      config.networking.enableIPv6 && cfg.IPv6rs == null && staticIPv6Addresses != [ ]
+    ) noIPv6rs}
   '';
 
 in
