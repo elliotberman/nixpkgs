@@ -28,8 +28,9 @@ in
     ];
 
     boot.initrd.extraUtilsCommands = mkIf (inInitrd && !config.boot.initrd.systemd.enable) ''
-      copy_bin_and_libs ${pkgs.dosfstools}/sbin/dosfsck
-      ln -sv dosfsck $out/bin/fsck.vfat
+      copy_bin_and_libs ${pkgs.dosfstools}/sbin/fsck.fat
+      ln -sv fsck.fat $out/bin/dosfsck
+      ln -sv fsck.fat $out/bin/fsck.vfat
     '';
 
     boot.initrd.systemd.initrdBin = mkIf inInitrd [ pkgs.dosfstools ];
